@@ -1,0 +1,21 @@
+<div class="inline-form-container"
+     [ngClass]="{'inline-form-container-editing': isEditing}"
+  (click)="editing()"
+>
+  <div class="inline-form-text" *ngIf="!isEditing">{{defaultText}}</div>
+  <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="isEditing"
+  class="inline-form">
+    <input type="text"
+           class="inline-form-input"
+           formControlName="title"
+           [placeholder]="inputPH"
+           *ngIf="inputType === 'input'"
+    >
+    <textarea *ngIf="inputType === 'textarea'" formControlName="title" class="inline-form-input">
+
+    </textarea>
+    <button *ngIf="hasBtn" type="submit"
+            [disabled]="form.invalid"
+    class="inline-form-button"> {{btnText}}</button>
+  </form>
+</div>
